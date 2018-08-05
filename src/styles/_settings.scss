@@ -1,0 +1,22 @@
+$map-width: 900px;
+$map-height: 630px;
+
+$hud-width: $map-width;
+$hud-height: 200px;
+$hud-bg: #030303;
+$hud-border-color: #000;
+
+$button-height: 70px;
+$button-width: 70px;
+$button-color: #772626;
+$button-dark: darken($button-color, 20%);
+$button-light: lighten($button-color, 20%);
+
+$grid-item-width: $map-width / 10; // 90px
+$grid-item-height: $map-height / 7; // 90px
+$grid-spacing: 3px;
+
+$base-spacing: 10px;
+$space-sm: $base-spacing / 2;
+$space-md: $base-spacing;
+$space-lg: $base-spacing * 2;

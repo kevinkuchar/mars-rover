@@ -1,0 +1,9 @@
+.console {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: $map-height $hud-height;
+  justify-content: center;
+  align-content: center;
+}

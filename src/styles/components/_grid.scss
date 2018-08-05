@@ -1,0 +1,19 @@
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &__item {
+    width: $grid-item-width;
+    height: $grid-item-height;
+    box-sizing: border-box;
+    padding: $grid-spacing;
+  }
+
+  &__item__box {
+    height: 100%;
+    width: 100%;
+    background: white;
+    opacity: .3;
+  }
+}

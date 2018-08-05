@@ -1,0 +1,31 @@
+.hud {
+  width: $hud-width;
+  height: $hud-height;
+  background-color: $hud-bg;
+  border-top: 5px solid $hud-border-color;
+
+  &__buttons-container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+
+  &__button {
+    background-color: $button-color;
+    border-left: 2px solid $button-light;
+    border-top: 2px solid $button-light;
+    border-right: 2px solid $button-dark;
+    border-bottom: 2px solid $button-dark;
+    height: $button-height;
+    width: $button-width;
+    margin: $space-sm;
+    user-select: none;
+
+    &:active {
+      border-left: 2px solid $button-dark;
+      border-top: 2px solid $button-dark;
+      border-right: 2px solid $button-light;
+      border-bottom: 2px solid $button-light;
+    }
+  }
+}
