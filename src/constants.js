@@ -1,7 +1,9 @@
 export const GRID_SIZE = 90;
 export const GRID_GAP = 3;
-export const ROVER_SIZE = 50;
-
+export const OBJECT_SIZE = 50;
+export const GRID_WIDTH = 9;
+export const GRID_HEIGHT = 6;
+export const NUM_OBSTACLES = 10;
 // Possible Rover Commands
 export const COMMANDS = {
   LEFT: 'l',

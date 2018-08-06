@@ -1,0 +1,37 @@
+.notification {
+  position: absolute;
+  z-index: 5;
+  text-align: center;
+  border: 10px dashed $notification-color;
+  width: $notification-width;
+  color: $notification-color;
+  padding: $space-lg;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  &__bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    opacity: .5;
+    z-index: 4
+  }
+
+  &__message {
+    position: relative;
+    z-index: 5;
+  }
+
+  &__heading {
+    font-size: $notification-heading-size;
+    margin-bottom: $space-md;
+  }
+
+  &__copy {
+    font-size: $notification-copy-size;
+  }
+}

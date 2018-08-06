@@ -1,9 +1,6 @@
-import { observable, action, computed, toJS } from 'mobx';
-import { COMMANDS } from '../constants';
+import { observable, action, toJS } from 'mobx';
 
 class CommandStore {
-  constructor() {}
-
   // User entered commands
   @observable commands = [];
 

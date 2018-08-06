@@ -1,9 +1,8 @@
 .rover {
+  z-index: 2;
   height: 50px;
   width: 50px;
   background-image: url('../assets/rover.png');
   position: absolute;
-  top: 90px + $grid-spacing;
-  left: 90px + $grid-spacing;
   transition: 300ms all;
 }

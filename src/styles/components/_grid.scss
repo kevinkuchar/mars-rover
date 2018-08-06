@@ -4,6 +4,7 @@
   flex-wrap: wrap;
 
   &__item {
+    z-index: 1;
     width: $grid-item-width;
     height: $grid-item-height;
     box-sizing: border-box;

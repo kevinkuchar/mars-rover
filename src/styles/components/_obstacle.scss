@@ -1,0 +1,7 @@
+.obstacle {
+  height: 50px;
+  width: 50px;
+  z-index: 2;
+  background-image: url('../assets/obstacle.png');
+  position: absolute;
+}

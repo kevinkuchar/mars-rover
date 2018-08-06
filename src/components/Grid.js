@@ -5,11 +5,13 @@ const NUM_ROWS = 7;
 
 class Grid extends Component {
   createGridItems() {
-    return Array(NUM_ROWS * NUM_COLS).fill(
-      <div className="grid__item">
-        <div className="grid__item__box"></div>
-      </div>
-    )
+    return Array(NUM_ROWS * NUM_COLS)
+      .fill('')
+      .map((item, index) => (
+        <div key={`grid.${index}`} className="grid__item">
+          <div className="grid__item__box"></div>
+        </div>
+      ));
   }
 
   render() {

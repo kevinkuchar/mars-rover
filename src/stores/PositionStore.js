@@ -1,9 +1,17 @@
 import { observable, action, computed, toJS } from 'mobx';
-import { COMMANDS, DIRECTIONS } from '../constants';
+import { getRandomX, getRandomY } from '../utils';
+import { COMMANDS, DIRECTIONS, GRID_HEIGHT, GRID_WIDTH, NUM_OBSTACLES } from '../constants';
 
 class PositionStore {
-  constructor() {}
+  constructor() {
+    this.createObstacles(NUM_OBSTACLES);
+    this.createRover();
+  }
 
+  // Animation timeout variable
+  animationTimeout = null;
+
+  // Order of directions used to determine turns
   compass = [
     DIRECTIONS.NORTH,
     DIRECTIONS.WEST,
@@ -11,26 +19,41 @@ class PositionStore {
     DIRECTIONS.EAST
   ];
 
+  // Last set of commands sent by user
+  @observable lastSentCommands = [];
+
   // Current rover rotation in degrees
   @observable roverRotation = 0;
 
   // Rover position object that tracks x, y and direction
   @observable roverPosition = {
-    direction: DIRECTIONS.NORTH,
-    x: 5,
-    y: 3
+    direction: DIRECTIONS.NORTH
   }
 
-  // Last set of commands sent by user
-  @observable lastSentCommands = [];
+  // Used for edge case of rover crossing bounds into an obstacle.
+  @observable previousPosition = {};
+
+  // Whether or not there is an obstruction ahead
+  @observable isCollision = false;
+  @observable collisionCoords = {};
 
   // Array of obstacle positions
-  @observable obstaclePosition = [
-    {x: 4, y: 5}
-  ];
+  @observable obstacles = [];
 
   @action updateRoverPosition(obj) {
-    this.roverPosition = { ...this.roverPosition, ...obj };
+    const newCoords = { ...this.roverPosition, ...obj };
+    if (this.isObstructed(newCoords)) {
+      this.isCollision = true;
+      this.collisionCoords = newCoords;
+      if (this.isRoverOutOfBounds) {
+        this.roverPosition = { ...this.previousPosition };
+      }
+      clearTimeout(this.animationTimeout);
+    } else {
+      this.isCollision = false;
+      this.previousPosition = { ...this.roverPosition };
+      this.roverPosition = newCoords;
+    }
   }
 
   /**
@@ -39,7 +62,7 @@ class PositionStore {
    */
   @computed get isRoverOutOfBounds() {
     const { x, y } = this.roverPosition;
-    return (y < 0 || y > 6) || (x < 0 || x > 9);
+    return (y < 0 || y > GRID_HEIGHT) || (x < 0 || x > GRID_WIDTH);
   }
 
   /**
@@ -50,15 +73,15 @@ class PositionStore {
     const { x, y } = this.roverPosition;
 
     if (y < 0) {
-      this.roverPosition.y = 6;
-    } else if (y > 6) {
-      this.roverPosition.y = 0;
+      this.updateRoverPosition({ y: GRID_HEIGHT });
+    } else if (y > GRID_HEIGHT) {
+      this.updateRoverPosition({ y: 0 });
     }
 
     if (x < 0) {
-      this.roverPosition.x = 9;
-    } else if (x > 9) {
-      this.roverPosition.x = 0;
+      this.updateRoverPosition({ x: GRID_WIDTH });
+    } else if (x > GRID_WIDTH) {
+      this.updateRoverPosition({ x: 0 });
     }
   }
 
@@ -101,6 +124,8 @@ class PositionStore {
         break;
       case DIRECTIONS.WEST:
         this.updateRoverPositionX(isFoward ? -1 : 1);
+        break;
+      default:
         break;
     }
   }
@@ -159,6 +184,8 @@ class PositionStore {
       case COMMANDS.SET_BOUNDS:
         this.setRoverInBounds();
         break;
+      default:
+        break;
     }
 
     if (commands.length) {
@@ -167,9 +194,9 @@ class PositionStore {
       if (this.isRoverOutOfBounds) {
         commands.unshift(COMMANDS.SET_BOUNDS);
       }
-      
+
       // Allow time for animation
-      setTimeout(() => this.readCommand(commands), 600)
+      this.animationTimeout = setTimeout(() => this.readCommand(commands), 600)
     }
   }
 
@@ -180,6 +207,48 @@ class PositionStore {
   @action sendRoverCommands = (commands) => {
     this.lastSentCommands = commands;
     this.readCommand(commands);
+  }
+
+  isObstructed(coords) {
+    const obstacles = toJS(this.obstacles);
+
+    return obstacles.some(item => {
+      return item.x === coords.x && item.y === coords.y;
+    });
+  }
+
+
+  /**
+   * Create random obstacles
+   * TODO: ensure no duplicate obstacles are created
+   * @param {Integer} num - Number of obstacles
+   */
+  createObstacles(num) {
+    let empty = Array(num).fill({});
+    let obstacles = empty.map(item => {
+      return {
+        x: getRandomX(),
+        y: getRandomY()
+      }
+    })
+
+    this.obstacles = obstacles;
+  }
+
+  /**
+   * Creates initial Rover coordinates
+   */
+  createRover() {
+    const coords = {
+      x: getRandomX(),
+      y: getRandomY()
+    }
+
+    if (this.isObstructed(coords)) {
+      this.createRover();
+    } else {
+      this.updateRoverPosition({ x: coords.x, y: coords.y });
+    }
   }
 }
 
