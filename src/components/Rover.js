@@ -5,14 +5,13 @@ import { GRID_SIZE, GRID_GAP, ROVER_SIZE } from '../constants';
 @inject('PositionStore')
 @observer
 class Rover extends Component {
-
   _calculateCoordinate(pos) {
     const centerValue = (GRID_SIZE - GRID_GAP - ROVER_SIZE) / 2
     return GRID_SIZE * pos + GRID_GAP + centerValue;
   }
 
   render() {
-    const { roverPosition, roverRotation } = this.props.PositionStore;
+    const { roverPosition, roverRotation, isRoverOutOfBounds } = this.props.PositionStore;
 
     const left = this._calculateCoordinate(roverPosition.x);
     const top = this._calculateCoordinate(roverPosition.y);
@@ -20,8 +19,12 @@ class Rover extends Component {
 
     const style = { left, top, transform };
 
+    if (isRoverOutOfBounds) {
+      return <div />;
+    }
+
     return (
-      <div style={style} className="rover rover--${roverPosition.direction}"></div>
+      <div style={style} className="rover"></div>
     );
   }
 }

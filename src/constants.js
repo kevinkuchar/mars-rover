@@ -7,7 +7,8 @@ export const COMMANDS = {
   LEFT: 'l',
   RIGHT: 'r',
   FORWARD: 'f',
-  BACKWARD: 'b'
+  BACKWARD: 'b',
+  SET_BOUNDS: 's'
 }
 
 // Directions of Compass

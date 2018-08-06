@@ -34,10 +34,19 @@ class PositionStore {
   }
 
   /**
+   * Checks if rover is off the grid.
+   * @return {Boolean} - Is rover out of bounds
+   */
+  @computed get isRoverOutOfBounds() {
+    const { x, y } = this.roverPosition;
+    return (y < 0 || y > 6) || (x < 0 || x > 9);
+  }
+
+  /**
    * Checks if the Rover has crossed over the bounds of the grid.
    * If so, sets the Rover's position to the opposite side of the grid.
    */
-  @action checkRoverBounds() {
+  @action setRoverInBounds() {
     const { x, y } = this.roverPosition;
 
     if (y < 0) {
@@ -94,7 +103,6 @@ class PositionStore {
         this.updateRoverPositionX(isFoward ? -1 : 1);
         break;
     }
-    this.checkRoverBounds();
   }
 
   /**
@@ -148,10 +156,18 @@ class PositionStore {
         this.rotateRover(currentCommand);
         this.changeDirection(currentCommand);
         break;
+      case COMMANDS.SET_BOUNDS:
+        this.setRoverInBounds();
+        break;
     }
 
     if (commands.length) {
       commands.shift();
+
+      if (this.isRoverOutOfBounds) {
+        commands.unshift(COMMANDS.SET_BOUNDS);
+      }
+      
       // Allow time for animation
       setTimeout(() => this.readCommand(commands), 600)
     }

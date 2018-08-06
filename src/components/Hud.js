@@ -44,7 +44,8 @@ class Hud extends Component {
               <input type="text" className="hud__input" readonly value={this.stringifyCommands(commands)}  />
             </div>
 
-            <p class="hud__last-sent-commands">Last Issued Commands: {this.stringifyCommands(lastSentCommands)}</p>
+            <p class="hud__message">Last Issued Commands: {this.stringifyCommands(lastSentCommands)}</p>
+            <p class="hud__message">Rover Position: X:{roverPosition.x + 1} Y:{roverPosition.y + 1} Direction:{roverPosition.direction}</p>
           </div>
           <div>
             <input type="submit" className="hud__submit" value="Send" />
