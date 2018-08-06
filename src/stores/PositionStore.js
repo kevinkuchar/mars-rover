@@ -250,6 +250,14 @@ class PositionStore {
       this.updateRoverPosition({ x: coords.x, y: coords.y });
     }
   }
+
+  /**
+   * Resets collision data
+   */
+  @action clearCollision = () => {
+    this.isCollision = false;
+    this.collisionCoords = {};
+  }
 }
 
 export default new PositionStore();

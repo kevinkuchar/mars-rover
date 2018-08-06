@@ -9,7 +9,11 @@ import HudButton from './HudButton';
 class Hud extends Component {
   onCommandClick = (command) => {
     const { addCommand } = this.props.CommandStore;
-    return () => addCommand(command);
+    const { clearCollision } = this.props.PositionStore;
+    return () => {
+      addCommand(command);
+      clearCollision();
+    }
   }
 
   onFormSubmit = (event) =>{
