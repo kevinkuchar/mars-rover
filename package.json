@@ -9,6 +9,7 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
+  "homepage": "http://www.kevinkuchar.com/mars-rover",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
