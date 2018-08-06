@@ -1,7 +1,9 @@
 # Mars Rover
 
 ### Demo
-[Click here to view a working demo](http://kevinkuchar.com/mars-rover)
+<a href="http://kevinkuchar.com/mars-rover" target="_blank">
+  Click here to view a working demo of the Mars Rover.
+</a>
 
 ### Set Up
 - npm install
