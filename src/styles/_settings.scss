@@ -1,17 +1,18 @@
-$map-width: 900px;
-$map-height: 630px;
+$map-width: 750px;
+$map-height: 525px;
 
 $hud-width: $map-width;
-$hud-height: 200px;
+$hud-height: auto;
 $hud-bg: #030303;
 $hud-border-color: #000;
 
-$button-height: 70px;
-$button-width: 70px;
+$button-height: 60px;
+$button-width: 60px;
+$button-font-color: #f2f2f2;
 $button-color: #772626;
 $button-dark: darken($button-color, 20%);
 $button-light: lighten($button-color, 20%);
-$button-font-size: 15px;
+$button-font-size: 12px;
 
 $input-height: 20px;
 $input-padding: 10px;

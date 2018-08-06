@@ -1,4 +1,4 @@
-export const GRID_SIZE = 90;
+export const GRID_SIZE = 75;
 export const GRID_GAP = 3;
 export const OBJECT_SIZE = 50;
 export const GRID_WIDTH = 9;
