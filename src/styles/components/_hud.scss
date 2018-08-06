@@ -66,6 +66,7 @@
 
   &__message {
     margin: $space-md $space-sm;
+    max-width: $hud-message-width;
     color: #fff;
   }
 }
