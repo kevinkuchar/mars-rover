@@ -22,6 +22,7 @@
     line-height: $button-height;
     font-size: $button-font-size;
     margin: $space-sm;
+    color: $button-font-color;
     text-align: center;
     user-select: none;
 
@@ -51,6 +52,7 @@
     margin: $space-sm 0;
     height: $button-height + $input-height + 32px;
     width: $button-height + $input-height + 32px;
+    color: $button-font-color;
     @include button-border(2px, $input-light, $input-dark);
 
     &:active {
