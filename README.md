@@ -28,6 +28,7 @@ Overall I spent about 7 hours on this project. Though a large chunk of that was 
 ### Improvements
 If more time was spent on this project I would:
 - Reduce the amount of responsibility the PositionStore has.
+- Make responsive.
 - Set up a linter to ensure code styles are consistent.
 - Add unit tests to position and command logic.
 - Add more code comments.
