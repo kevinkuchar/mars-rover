@@ -11,6 +11,13 @@ $button-width: 70px;
 $button-color: #772626;
 $button-dark: darken($button-color, 20%);
 $button-light: lighten($button-color, 20%);
+$button-font-size: 15px;
+
+$input-height: 20px;
+$input-padding: 10px;
+$input-color: #2c6d1d;
+$input-dark: darken($input-color, 20%);
+$input-light: lighten($input-color, 20%);
 
 $grid-item-width: $map-width / 10; // 90px
 $grid-item-height: $map-height / 7; // 90px

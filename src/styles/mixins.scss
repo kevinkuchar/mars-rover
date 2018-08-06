@@ -1,0 +1,6 @@
+@mixin button-border($size, $color1, $color2) {
+  border-left: $size solid $color1;
+  border-top: $size solid $color1;
+  border-right: $size solid $color2;
+  border-bottom: $size solid $color2;
+}

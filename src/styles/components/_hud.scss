@@ -3,29 +3,67 @@
   height: $hud-height;
   background-color: $hud-bg;
   border-top: 5px solid $hud-border-color;
+  display: flex;
+
+  &__form {
+    display: flex;
+    margin: 0 auto;
+  }
 
   &__buttons-container {
     display: flex;
-    text-align: center;
-    justify-content: center;
   }
 
   &__button {
+    @include button-border(2px, $button-light, $button-dark);
     background-color: $button-color;
-    border-left: 2px solid $button-light;
-    border-top: 2px solid $button-light;
-    border-right: 2px solid $button-dark;
-    border-bottom: 2px solid $button-dark;
     height: $button-height;
     width: $button-width;
+    line-height: $button-height;
+    font-size: $button-font-size;
     margin: $space-sm;
+    text-align: center;
     user-select: none;
 
     &:active {
-      border-left: 2px solid $button-dark;
-      border-top: 2px solid $button-dark;
-      border-right: 2px solid $button-light;
-      border-bottom: 2px solid $button-light;
+      @include button-border(2px, $button-dark, $button-light);
     }
+  }
+
+  &__input-container {
+
+  }
+
+  &__input {
+    width: ($button-width * 4) + ($space-sm * 4);
+    height: $input-height;
+    padding: $input-padding;
+    margin: 0 auto;
+    display: block;
+    font-size: 20px;
+    font-family: monospace;
+  }
+
+  &__submit {
+    font-family: monospace;
+    font-size: 30px;
+    background-color: $input-color;
+    margin: $space-sm 0;
+    height: $button-height + $input-height + 32px;
+    width: $button-height + $input-height + 32px;
+    @include button-border(2px, $input-light, $input-dark);
+
+    &:active {
+      @include button-border(2px, $input-dark, $input-light);
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__last-sent-commands {
+    margin: $space-md $space-sm;
+    color: #fff;
   }
 }

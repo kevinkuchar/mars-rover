@@ -21,6 +21,9 @@ class PositionStore {
     y: 3
   }
 
+  // Last set of commands sent by user
+  @observable lastSentCommands = [];
+
   // Array of obstacle positions
   @observable obstaclePosition = [
     {x: 4, y: 5}
@@ -106,9 +109,8 @@ class PositionStore {
 
     const curIndex = compass.findIndex(item => item === direction);
     const newIndex = command === COMMANDS.LEFT ? curIndex + 1 : curIndex - 1;
-
     if (command === COMMANDS.LEFT) {
-      newDirection = newIndex > compass.length ? compass[0] : compass[newIndex];
+      newDirection = newIndex > 3 ? compass[0] : compass[newIndex];
     } else if (command === COMMANDS.RIGHT) {
       newDirection = newIndex < 0 ? compass[3] : compass[newIndex];
     }
@@ -159,16 +161,8 @@ class PositionStore {
    * Sends an array of commands to the readCommands function
    * @param {Array} - commands - User issued commands
    */
-  @action sendRoverCommands = () => {
-    let commands = [
-      COMMANDS.BACKWARD,
-      COMMANDS.LEFT,
-      COMMANDS.RIGHT,
-      COMMANDS.FORWARD,
-      COMMANDS.FORWARD,
-      COMMANDS.RIGHT,
-      COMMANDS.FORWARD,
-    ];
+  @action sendRoverCommands = (commands) => {
+    this.lastSentCommands = commands;
     this.readCommand(commands);
   }
 }
