@@ -1,4 +1,10 @@
 # Mars Rover
+### Set Up
+- npm install
+- npm start
+
+### Browser Support
+This project was developed and tested in latest Google Chrome
 
 ### Requirements
 - Develop an api that moves a rover around on a grid.
@@ -14,3 +20,10 @@
 
 ### Time Spent
 Overall I spent about 7 hours on this project. Though a large chunk of that was me unnecessarily messing with the design and CSS. I probably spent around 4 total hours on the React/JavaScript and position/collision logic.
+
+### Improvements
+If more time was spent on this project I would:
+- Reduce the amount of responsibility the PositionStore has.
+- Set up a linter to ensure code styles are consistent.
+- Add unit tests to position and command logic.
+- Add more code comments.
